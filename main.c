@@ -1,15 +1,21 @@
 #include "Tests.h"
 #include "Window.h"
-
+#include "Drawing.h"
+#include "Game.h"
 
 int main()
 {
-	Window* wnd = createWindow("Okno testowe", 800, 600);
-
-	while (isWindowOpened(wnd))
+	Game* game = malloc(sizeof(Game));
+	if (game == NULL)return -1;
+	Init(game);
+	
+	while (isWindowOpened(game->window))
 	{
-		updateWindow(wnd);
+		Update(game);
+		Draw(game);
+		updateWindow(game->window);	 
 	}
+	
 
 	return 0;
 }
